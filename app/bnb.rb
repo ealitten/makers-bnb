@@ -3,8 +3,11 @@ ENV['RACK_ENV'] ||= 'development'
 require 'sinatra/base'
 require 'securerandom'
 require_relative 'datamapper_setup'
+require_relative 'helpers'
 
 class Bnb < Sinatra::Base
+
+  helpers Helpers
 
   enable :sessions
   set :session_secret, ENV.fetch('SESSION_SECRET') { SecureRandom.hex(64) }
@@ -17,13 +20,13 @@ class Bnb < Sinatra::Base
   end
 
   post '/users' do
-    session[:user_name] = params[:name]
-    session[:user_email] = params[:email]
+    @user = User.create(username: params[:name], email: params[:email])
+    session[:user_id] = @user.id
     redirect '/users'
   end
 
   get '/users' do
-    "Welcome " + session[:user_name]
+    "Welcome " + current_user.username
   end
 
 end
