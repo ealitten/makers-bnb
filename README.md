@@ -6,7 +6,7 @@ So that I can list a space
 I would like to sign up
 
 As a user
-So that I can list a hire a space
+So that someone can hire my space
 I would like to list a space
 
 As a user
