@@ -16,6 +16,14 @@ def sign_up
   click_button 'Sign up!'
 end
 
+def list_space
+  visit '/spaces/new/'
+  fill_in :title, with: "Highfield House"
+  fill_in :description, with: "nice house"
+  fill_in :price, with: "100"
+  click_button 'List space!'
+end
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest

@@ -29,4 +29,19 @@ class Bnb < Sinatra::Base
     "Welcome " + current_user.username
   end
 
+  get '/spaces/new' do
+    erb(:list_space)
+  end
+
+  post '/spaces' do
+    @space = Space.create(title: params[:title],
+                          description: params[:description],
+                          price: params[:price])
+    redirect '/spaces'
+  end
+
+  get '/spaces' do
+    
+  end
+
 end
