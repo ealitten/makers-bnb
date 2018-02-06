@@ -3,6 +3,7 @@ require 'dm-postgres-adapter'
 
 require_relative 'models/user'
 require_relative 'models/space'
+require_relative 'models/hire'
 
 # DataMapper::Logger.new($stdout, :debug)
 DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/makersbnb_#{ENV['RACK_ENV']}")
