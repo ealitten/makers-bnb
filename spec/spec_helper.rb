@@ -21,6 +21,14 @@ fill_in 'password_confirmation', with: password_confirmation
 click_button 'Sign up!'
 end
 
+def create_test_user
+  User.create(username: 'Mr Test', 
+              email: 'test@yaoogle.com', 
+              password: 'mypassword', 
+              password_confirmation: 'mypassword')
+end
+
+
 def list_space
   visit '/spaces/new'
   fill_in :title, with: "Highfield House"
