@@ -16,15 +16,24 @@ class Bnb < Sinatra::Base
   run! if app_file == $0
 
   get '/' do
+    redirect '/users/new'
+  end
+
+  get '/users/new' do
     erb :signup
   end
 
   post '/users' do
-    @user = User.create(username: params[:name], 
+    @user = User.new(username: params[:name], 
                         email: params[:email],
-                        password: params[:password])
-    session[:user_id] = @user.id
-    redirect '/users'
+                        password: params[:password],
+                        password_confirmation: params[:password_confirmation])
+    if @user.save
+      session[:user_id] = @user.id
+      redirect '/users'
+    else
+      redirect '/users/new'
+    end
   end
 
   get '/users' do

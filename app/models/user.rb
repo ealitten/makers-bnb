@@ -10,6 +10,10 @@ class User
   property :email, String, required: true, format: :email_address, unique: true
   property :encrypted_password, Text
 
+  attr_accessor :password_confirmation
+  validates_confirmation_of :password
+
+
   has n, :spaces
 
   def password
