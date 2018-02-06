@@ -5,7 +5,7 @@
 feature 'list space' do
   scenario 'find page to list space' do
     sign_up
-    visit '/spaces/new/'
+    visit '/spaces/new'
     expect(page).to have_content('List a space:')
   end
 

@@ -17,7 +17,7 @@ def sign_up
 end
 
 def list_space
-  visit '/spaces/new/'
+  visit '/spaces/new'
   fill_in :title, with: "Highfield House"
   fill_in :description, with: "nice house"
   fill_in :price, with: "100"
