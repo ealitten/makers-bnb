@@ -44,6 +44,14 @@ class Bnb < Sinatra::Base
     erb(:list_space)
   end
 
+  get '/hire/new' do
+    erb(:hire)
+  end
+
+  post '/hire' do
+    Hire.create(date: params[:date], user_id: session[:user_id], space_id: 1)
+  end
+
   post '/spaces' do
     @space = Space.create(title: params[:title],
                           description: params[:description],
@@ -53,7 +61,8 @@ class Bnb < Sinatra::Base
   end
 
   get '/spaces' do
-
+    @spaces = Space.all
+    erb(:spaces)
   end
 
 end
