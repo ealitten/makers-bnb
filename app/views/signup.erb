@@ -1,15 +1,21 @@
 <form action="/users" method="post">
-  <div>
-     <label for="name">Name: 
-       <input type="text" name="name" required>
-     </label>
-   </div>
-   <div>
-     <label for="username">Email: 
-       <input type="email" name="email"  required>
-     </label>
-   </div>
-   <div>
-      <input type="submit" value="Sign up!">
-   </div>
- </form>
+
+  <label for="name">Name:
+    <input type="text" name="name" required>
+  </label>
+
+  <label for="email">Email:
+    <input type="email" name="email" required>
+  </label>
+
+  <label for="password">Password:
+    <input type="password" name="password" required>
+  </label>
+
+  <label for="password">Confirm password:
+    <input type="password" name="password_confirmation" required>
+  </label>
+
+  <input type="submit" value="Sign up!">
+
+</form>

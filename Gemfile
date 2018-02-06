@@ -3,6 +3,7 @@ source "https://rubygems.org"
 gem 'sinatra'
 gem 'data_mapper', '1.2.0'
 gem 'dm-postgres-adapter'
+gem 'bcrypt'
 gem 'rake'
 
 group :test do
