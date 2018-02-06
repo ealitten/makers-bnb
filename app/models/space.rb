@@ -10,4 +10,6 @@ class Space
   property :price, Integer
   # , required: true
 
+  belongs_to :user
+
 end

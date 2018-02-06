@@ -36,12 +36,13 @@ class Bnb < Sinatra::Base
   post '/spaces' do
     @space = Space.create(title: params[:title],
                           description: params[:description],
-                          price: params[:price])
+                          price: params[:price],
+                          user_id: current_user.id)
     redirect '/spaces'
   end
 
   get '/spaces' do
-    
+
   end
 
 end
