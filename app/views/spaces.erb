@@ -1,0 +1,19 @@
+<html>
+
+<h1>Spaces for hire</h1>
+
+<% if current_user %>
+  <h2>Welcome <%= @current_user.username %></h2>
+<% end %>
+
+<ul id='spaces'>
+  <% @spaces.each do |space| %>
+    <li>
+      Title: <%= space.title %><br>
+      Description: <%= space.description %><br>
+      Price per night: <%= space.price %>
+    </li>
+  <% end %>
+</ul>
+
+</html>

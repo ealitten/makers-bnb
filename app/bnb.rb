@@ -50,7 +50,8 @@ class Bnb < Sinatra::Base
   end
 
   get '/spaces' do
-
+    @spaces = Space.all
+    erb(:spaces)
   end
 
 end
