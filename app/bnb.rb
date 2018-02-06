@@ -20,7 +20,9 @@ class Bnb < Sinatra::Base
   end
 
   post '/users' do
-    @user = User.create(username: params[:name], email: params[:email])
+    @user = User.create(username: params[:name], 
+                        email: params[:email],
+                        password: params[:password])
     session[:user_id] = @user.id
     redirect '/users'
   end
