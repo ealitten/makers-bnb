@@ -1,6 +1,7 @@
 ENV['RACK_ENV'] ||= 'development'
 
 require 'sinatra/base'
+require 'sinatra/flash'
 require 'securerandom'
 require_relative 'datamapper_setup'
 require_relative 'helpers'
@@ -11,6 +12,7 @@ class Bnb < Sinatra::Base
 
   enable :sessions
   set :session_secret, ENV.fetch('SESSION_SECRET') { SecureRandom.hex(64) }
+  register Sinatra::Flash
 
   # start the server if ruby file executed directly
   run! if app_file == $0
@@ -63,6 +65,21 @@ class Bnb < Sinatra::Base
   get '/spaces' do
     @spaces = Space.all
     erb(:spaces)
+  end
+
+  get '/sessions/new' do
+    erb(:login)
+  end
+
+  post '/sessions' do
+    @user = User.first(params[:name])
+    if @user.nil? || @user.password != params[:password]
+      flash.now[:error] = 'Username or password is incorrect'
+      erb(:login)
+    else
+      session[:user_id] = @user.id
+      redirect '/spaces'
+    end
   end
 
 end

@@ -17,4 +17,12 @@ feature 'User sign in' do
     expect(page).to have_content('Username or password is incorrect')
   end
 
+  scenario 'with wrong username' do
+    visit '/sessions/new'
+    fill_in :name, with: 'Mr Test'
+    fill_in :password, with: 'mypassword'
+    click_button 'Sign in'
+    expect(page).to have_content('Username or password is incorrect')
+  end
+
 end
