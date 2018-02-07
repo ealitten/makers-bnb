@@ -28,6 +28,12 @@ def create_test_user
               password_confirmation: 'mypassword')
 end
 
+def login_test_user
+  visit '/sessions/new'
+  fill_in :name, with: 'Mr Test'
+  fill_in :password, with: 'mypassword'
+  click_button 'Sign in'
+end
 
 def list_space
   visit '/spaces/new'
