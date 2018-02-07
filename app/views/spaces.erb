@@ -18,7 +18,7 @@
       <label for="price">Price per night:
         <%= space.price %><br>
      </label>
-      <form action="/hire" method="post">
+      <form action="/spaces/hire" method="post">
         <input type="hidden" name="space_id" value="<%= space.id %>">
         <label for="date" > Date:
           <input type="date" name="date" placeholder="Insert date">
