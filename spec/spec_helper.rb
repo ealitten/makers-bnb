@@ -9,9 +9,9 @@ require './app/bnb'
 
 Capybara.app = Bnb
 
-def sign_up(name: 'Alex', 
-  email: 'alex@example.com', 
-  password: 'password123', 
+def sign_up(name: 'Alex',
+  email: 'alex@example.com',
+  password: 'password123',
   password_confirmation: 'password123')
 visit '/'
 fill_in 'name', with: name
