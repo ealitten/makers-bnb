@@ -12,8 +12,7 @@ feature 'Hire' do
 end
 
   def hire
-    visit '/hire/new'
+    visit '/spaces'
     fill_in :date, with: '02/01/2109'
-    click_button 'Hire Space'
+    click_button 'Hire'
   end
-
