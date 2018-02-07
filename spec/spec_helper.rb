@@ -29,6 +29,13 @@ def list_space
   click_button 'List space!'
 end
 
+def create_test_user
+  User.create(username: 'Mr Test',
+              email: 'test@yaoogle.com',
+              password: 'mypassword',
+              password_confirmation: 'mypassword')
+end
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
