@@ -17,9 +17,22 @@
 <ul id="spaces">
   <% @spaces.each do |space| %>
     <li>
-      Title: <%= space.title %><br>
-      Description: <%= space.description %><br>
-      Price per night: <%= space.price %>
+      <label for="title">Title:
+       <%= space.title %><br>
+       </label>
+       <label for="description">Description:
+      <%= space.description %><br>
+      </label>
+      <label for="price">Price per night:
+        <%= space.price %><br>
+     </label>
+      <form action="/spaces/hire" method="post">
+        <input type="hidden" name="space_id" value="<%= space.id %>">
+        <label for="date" > Date:
+          <input type="date" name="date">
+        </label>
+        <input type="submit" value="Hire">
+      </form>
     </li>
   <% end %>
 </ul>

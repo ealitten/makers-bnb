@@ -9,9 +9,9 @@ require './app/bnb'
 
 Capybara.app = Bnb
 
-def sign_up(name: 'Alex', 
-  email: 'alex@example.com', 
-  password: 'password123', 
+def sign_up(name: 'Alex',
+  email: 'alex@example.com',
+  password: 'password123',
   password_confirmation: 'password123')
 visit '/'
 fill_in 'name', with: name
@@ -41,6 +41,13 @@ def list_space
   fill_in :description, with: "nice house"
   fill_in :price, with: "100"
   click_button 'List space!'
+end
+
+def create_test_user
+  User.create(username: 'Mr Test',
+              email: 'test@yaoogle.com',
+              password: 'mypassword',
+              password_confirmation: 'mypassword')
 end
 
 RSpec.configure do |config|
