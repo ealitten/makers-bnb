@@ -1,7 +1,7 @@
 feature 'User sign in' do
   scenario 'with correct username & pw' do
     create_test_user
-    click_button 'Sign in'
+    visit '/sessions/new'
     fill_in :name, with: 'Mr Test'
     fill_in :password, with: 'mypassword'
     click_button 'Sign in'
@@ -10,7 +10,7 @@ feature 'User sign in' do
 
   scenario 'with wrong pw' do
     create_test_user
-    click_button 'Sign in'
+    visit '/sessions/new'
     fill_in :name, with: 'Mr Test'
     fill_in :password, with: 'wrongpassword'
     click_button 'Sign in'
