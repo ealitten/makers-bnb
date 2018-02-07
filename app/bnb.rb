@@ -44,12 +44,9 @@ class Bnb < Sinatra::Base
     erb(:list_space)
   end
 
-  get '/hire/new' do
-    erb(:hire)
-  end
-
-  post '/hire' do
+  post '/spaces/hire' do
     Hire.create(date: params[:date], user_id: session[:user_id], space_id: params[:space_id])
+    redirect '/users'
   end
 
   post '/spaces' do
