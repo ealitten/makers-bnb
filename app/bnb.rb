@@ -8,11 +8,14 @@ require_relative 'helpers'
 
 class Bnb < Sinatra::Base
 
+  # helper methods
   helpers Helpers
 
+  # server config
   enable :sessions
   set :session_secret, ENV.fetch('SESSION_SECRET') { SecureRandom.hex(64) }
   register Sinatra::Flash
+  use Rack::MethodOverride
 
   # start the server if ruby file executed directly
   run! if app_file == $0
@@ -80,6 +83,11 @@ class Bnb < Sinatra::Base
       session[:user_id] = @user.id
       redirect '/spaces'
     end
+  end
+
+  delete '/sessions' do
+    session[:user_id] = nil
+    redirect '/spaces'
   end
 
 end
