@@ -21,17 +21,10 @@ fill_in 'password_confirmation', with: password_confirmation
 click_button 'Sign up!'
 end
 
-def create_test_user
-  User.create(username: 'Mr Test', 
-              email: 'test@yaoogle.com', 
-              password: 'mypassword', 
-              password_confirmation: 'mypassword')
-end
-
-def login_test_user
+def login(name: 'Alex', password: 'password123')
   visit '/sessions/new'
-  fill_in :name, with: 'Mr Test'
-  fill_in :password, with: 'mypassword'
+  fill_in 'name', with: name
+  fill_in 'password', with: password
   click_button 'Sign in'
 end
 
@@ -43,12 +36,6 @@ def list_space
   click_button 'List space!'
 end
 
-def create_test_user
-  User.create(username: 'Mr Test',
-              email: 'test@yaoogle.com',
-              password: 'mypassword',
-              password_confirmation: 'mypassword')
-end
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

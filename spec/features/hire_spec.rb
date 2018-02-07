@@ -1,8 +1,8 @@
 feature 'Hire' do
   scenario 'user books available space' do
-    create_test_user
+    sign_up(name: 'owner', email: 'owner@example.com')
     Space.create(title: 'test', description: 'test', price: 10, user_id: 1)
-    sign_up
+    sign_up(name: 'hirer', email: 'hirer@example.com')
     hire
     expect{ hire }.to change { Hire.count }.by 1
     expect(Hire.first.date).to eq('02/01/2109')
