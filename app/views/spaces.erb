@@ -12,6 +12,11 @@
       Title: <%= space.title %><br>
       Description: <%= space.description %><br>
       Price per night: <%= space.price %>
+      <form action="/hire" method="post">
+        <input type=hidden value="<%= space.id %>">
+        <input type="text" placeholder="Date">
+        <input type="submit" value="Hire">
+      </form>
     </li>
   <% end %>
 </ul>

@@ -24,7 +24,7 @@ class Bnb < Sinatra::Base
   end
 
   post '/users' do
-    @user = User.new(username: params[:name], 
+    @user = User.new(username: params[:name],
                         email: params[:email],
                         password: params[:password],
                         password_confirmation: params[:password_confirmation])
@@ -49,7 +49,7 @@ class Bnb < Sinatra::Base
   end
 
   post '/hire' do
-    Hire.create(date: params[:date], user_id: session[:user_id], space_id: 1)
+    Hire.create(date: params[:date], user_id: session[:user_id], space_id: params[:space_id])
   end
 
   post '/spaces' do
