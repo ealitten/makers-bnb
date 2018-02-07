@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Login</title>
+
+</head>
+<body>
+  <h3>Please login to MakersBnB</h3>
+
+  <p>
+      <% if flash[:error] %>
+        <%= flash[:error] %>
+      <% end %>
+  </p>
+  <form action="/sessions" method="post">
+    <label for="name">Username:
+      <input type="text" name="name" />
+    </label>
+    <label for="password">Password:
+      <input type="password" name="password" />
+    </label>
+    <input type="submit" value="Sign in" />
+  </form>
+</body>
+</html>

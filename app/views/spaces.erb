@@ -4,9 +4,17 @@
 
 <% if current_user %>
   <h2>Welcome <%= @current_user.username %></h2>
+  <form action="/sessions" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Sign out">
+  </form>
+<% else %>
+<form action="/sessions/new">
+  <input type="submit" value="Sign in">
+</form>
 <% end %>
 
-<ul id='spaces'>
+<ul id="spaces">
   <% @spaces.each do |space| %>
     <li>
       Title: <%= space.title %><br>
