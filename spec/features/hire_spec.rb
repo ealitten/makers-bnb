@@ -1,6 +1,6 @@
 feature 'Hire' do
   scenario 'user books available space' do
-    User.create(username: 'Owner', email: 'Owner@yaoogle.com')
+    create_test_user
     Space.create(title: 'test', description: 'test', price: 10, user_id: 1)
     sign_up
     hire
