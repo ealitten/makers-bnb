@@ -1,22 +1,26 @@
 feature 'User sign in' do
   scenario 'with correct username & pw' do
-    create_test_user
-    login_test_user
-    expect(page).to have_content('Welcome Mr Test')
+    sign_up
+    login
+    expect(page).to have_content('Welcome Alex')
   end
 
   scenario 'with wrong pw' do
-    create_test_user
-    visit '/sessions/new'
-    fill_in :name, with: 'Mr Test'
-    fill_in :password, with: 'wrongpassword'
-    click_button 'Sign in'
+    sign_up
+    login(password: 'wrongpassword')
     expect(page).to have_content('Username or password is incorrect')
   end
 
-  scenario 'with wrong username' do
-    login_test_user
+  scenario 'when user does not exist' do
+    login
     expect(page).to have_content('Username or password is incorrect')
+  end
+
+  scenario 'with multiple users in database' do
+    sign_up(name: 'User1', email: 'user1@example.com')
+    sign_up(name: 'User2', email: 'user1@example.com')
+    login(name: 'User2')
+    expect(page).to have_content('Welcome User2')
   end
 
 end

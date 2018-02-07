@@ -72,7 +72,7 @@ class Bnb < Sinatra::Base
   end
 
   post '/sessions' do
-    @user = User.first(params[:name])
+    @user = User.first(username: params[:name])
     if @user.nil? || @user.password != params[:password]
       flash.now[:error] = 'Username or password is incorrect'
       erb(:login)
@@ -80,6 +80,7 @@ class Bnb < Sinatra::Base
       session[:user_id] = @user.id
       redirect '/spaces'
     end
+
   end
 
   delete '/sessions' do
