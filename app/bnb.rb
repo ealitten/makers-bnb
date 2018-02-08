@@ -76,7 +76,7 @@ class Bnb < Sinatra::Base
   end
 
   get '/requests' do
-    @requests = Hire.all # todo: change to only get requests for current user's owned spaces
+    @requests = current_user.spaces.map { |space| space.hires }.flatten
     erb(:requests)
   end
 
