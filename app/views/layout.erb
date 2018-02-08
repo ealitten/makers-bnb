@@ -6,11 +6,11 @@
     <body>
       <header>
         <% if current_user %>
-          <h2>Welcome <%= @current_user.username %></h2>
           <form action="/sessions" method="post">
             <input type="hidden" name="_method" value="DELETE">
             <input type="submit" value="Sign out">
-          </form>
+          </form><br>
+          <h2>Welcome <%= @current_user.username %></h2>
         <% else %>
         <form action="/sessions/new">
           <input type="submit" value="Sign in">

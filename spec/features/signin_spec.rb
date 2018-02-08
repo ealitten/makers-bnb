@@ -18,7 +18,9 @@ feature 'User sign in' do
 
   scenario 'with multiple users in database' do
     sign_up(name: 'User1', email: 'user1@example.com')
-    sign_up(name: 'User2', email: 'user1@example.com')
+    click_button("Sign out")
+    sign_up(name: 'User2', email: 'user2@example.com')
+    click_button("Sign out")
     login(name: 'User2')
     expect(page).to have_content('Welcome User2')
   end

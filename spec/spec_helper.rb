@@ -13,7 +13,7 @@ def sign_up(name: 'Alex',
   email: 'alex@example.com',
   password: 'password123',
   password_confirmation: 'password123')
-visit '/'
+visit '/users/new'
 fill_in 'name', with: name
 fill_in 'email', with: email
 fill_in 'password', with: password
@@ -25,7 +25,7 @@ def login(name: 'Alex', password: 'password123')
   visit '/sessions/new'
   fill_in 'name', with: name
   fill_in 'password', with: password
-  click_button 'Sign in'
+  click_button 'Log in'
 end
 
 def list_space
