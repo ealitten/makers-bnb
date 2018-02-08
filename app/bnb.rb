@@ -24,6 +24,8 @@ class Bnb < Sinatra::Base
     redirect '/users/new'
   end
 
+  # users routes
+
   get '/users/new' do
     erb :signup
   end
@@ -45,13 +47,10 @@ class Bnb < Sinatra::Base
     erb(:welcome)
   end
 
+  # spaces routes
+
   get '/spaces/new' do
     erb(:list_space)
-  end
-
-  post '/spaces/hire' do
-    Hire.create(date: params[:date], user_id: session[:user_id], space_id: params[:space_id])
-    redirect '/users'
   end
 
   post '/spaces' do
@@ -63,23 +62,34 @@ class Bnb < Sinatra::Base
                           user_id: current_user.id)
     redirect '/spaces'
   end
-
+ 
   get '/spaces' do
     @spaces = Space.all
     erb(:spaces)
   end
 
-  get '/sessions/new' do
-    erb(:login)
+  # requests routes
+
+  post '/spaces/hire' do #todo: rename to requests/new
+    Hire.create(date: params[:date], user_id: session[:user_id], space_id: params[:space_id])
+    redirect '/users'
   end
 
   get '/requests' do
-    @requests = Hire.all
+    @requests = Hire.all # todo: change to only get requests for current user's owned spaces
     erb(:requests)
   end
 
   post '/requests' do
-    
+    flash.next[:notice] = "Request approved" if params[:action] == 'approve'
+    flash.next[:notice] = "Request denied" if params[:action] == 'deny'
+    redirect '/requests'
+  end
+
+  # sessions routes
+
+  get '/sessions/new' do
+    erb(:login)
   end
 
   post '/sessions' do
@@ -91,7 +101,6 @@ class Bnb < Sinatra::Base
       session[:user_id] = @user.id
       redirect '/users'
     end
-
   end
 
   delete '/sessions' do

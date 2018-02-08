@@ -1,4 +1,11 @@
 <h1>Requests</h1>
+
+<p>
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
+  <% end %>
+</p>
+
 <% if !@requests.empty? %>
   <h3>You have requests waiting:</h3>
 <%end%>
