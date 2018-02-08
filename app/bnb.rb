@@ -70,9 +70,14 @@ class Bnb < Sinatra::Base
 
   # requests routes
 
-  post '/spaces/hire' do #todo: rename to requests/new
-    Hire.create(date: params[:date], user_id: session[:user_id], space_id: params[:space_id])
-    redirect '/users'
+  post '/spaces/hire' do # rename to /requests/new
+    if(Hire.first(space_id: params[:space_id]))
+      flash[:alert] = "Booked by another user"
+      redirect '/spaces'
+    else
+      Hire.create(date: params[:date], user_id: session[:user_id], space_id: params[:space_id])
+      redirect '/users'
+    end
   end
 
   get '/requests' do
