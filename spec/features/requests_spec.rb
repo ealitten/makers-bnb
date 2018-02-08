@@ -41,6 +41,25 @@ feature 'user can view requests' do
     visit '/requests'
     expect(page).not_to have_content("You have requests waiting:")
   end
+
+
+
+  scenario 'denied requests are no longer shown on the requests page' do
+    sign_up(name: 'Owner', email: 'user1@example.com')
+    list_space
+    click_button("Sign out")
+    sign_up(name: 'Holidaymaker', email: 'user2@example.com')
+    visit '/spaces'
+    fill_in :date, with: '02/01/2109'
+    click_button 'Hire'
+    click_button("Sign out")
+    login(name: "Owner")
+    visit '/requests'
+    click_button 'Deny'
+    expect(page).not_to have_content("You have requests waiting:")
+    expect(page).not_to have_content("2109-01-02")
+  end
+
 end
 
 feature 'user can accept and deny requests' do
@@ -75,4 +94,5 @@ feature 'user can accept and deny requests' do
     expect(page).to have_content("Request denied")
     expect(Hire.first.approved).to eq(false) 
   end
+
 end

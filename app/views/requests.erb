@@ -6,12 +6,12 @@
   <% end %>
 </p>
 
-<% if !@requests.empty? %>
-  <h3>You have requests waiting:</h3>
-<%end%>
+<ul id="new_requests">
+    <% if !@new_requests.empty? %>
+    <h3>You have requests waiting:</h3>
+  <%end%>
 
-<ul id="requests">
-  <% @requests.each do |request| %>
+  <% @new_requests.each do |request| %>
     <li>
       User: <%= User.get(request.user_id).username %><br>
       Date: <%= request.date %><br>
