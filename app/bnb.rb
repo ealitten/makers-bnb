@@ -73,6 +73,15 @@ class Bnb < Sinatra::Base
     erb(:login)
   end
 
+  get '/requests' do
+    @requests = Hire.all
+    erb(:requests)
+  end
+
+  post '/requests' do
+    
+  end
+
   post '/sessions' do
     @user = User.first(username: params[:name])
     if @user.nil? || @user.password != params[:password]

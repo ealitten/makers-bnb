@@ -1,0 +1,23 @@
+<h1>Requests</h1>
+<% if !@requests.empty? %>
+  <h3>You have requests waiting:</h3>
+<%end%>
+
+<ul id="requests">
+  <% @requests.each do |request| %>
+    <li>
+      User: <%= request.user_id %><br>
+      Date: <%= request.date %><br>
+      <form action="/requests" method="post">
+        <input type="hidden" name="request_id" value="<%= request.id %>">
+        <input type="hidden" name="action" value="approve">
+        <input type="submit" value="Approve">
+      </form>
+      <form action="/requests" method="post">
+        <input type="hidden" name="request_id" value="<%= request.id %>">
+        <input type="hidden" name="action" value="deny">
+        <input type="submit" value="Deny">
+      </form>
+    </li>
+  <% end %>
+</ul>
