@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Welcome!</title>
+
+  <% if current_user %>
+    <h2>Welcome <%= @current_user.username %></h2>
+  <% end %>
+
+</head>
+<body>
+  <form action="/spaces">
+    <input type="submit" value="Spaces" />
+  <form action="/space/new">
+    <input type="submit" value="List Space" />
+  <form action="/requests">
+    <input type="submit" value="Requests" />
+  </form>
+</body>
+</html>
