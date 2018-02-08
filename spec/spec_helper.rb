@@ -33,6 +33,8 @@ def list_space
   fill_in :title, with: "Highfield House"
   fill_in :description, with: "nice house"
   fill_in :price, with: "100"
+  fill_in :availability_start, with: "01/01/2018"
+  fill_in :availability_end, with: "01/12/2018"
   click_button 'List space!'
 end
 
