@@ -15,6 +15,7 @@
     <li>
       User: <%= User.get(request.user_id).username %><br>
       Date: <%= request.date %><br>
+      Property: <%= Space.get(request.space_id).title %><br>
       <form action="/requests" method="post">
         <input type="hidden" name="request_id" value="<%= request.id %>">
         <input type="hidden" name="action" value="approve">
@@ -38,6 +39,7 @@
     <li>
       User: <%= User.get(request.user_id).username %><br>
       Date: <%= request.date %><br>
+      Property: <%= Space.get(request.space_id).title %><br>
     </li>
   <% end %>
 </ul>

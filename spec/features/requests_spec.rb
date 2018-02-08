@@ -13,6 +13,7 @@ feature 'user can view requests' do
     within 'ul#new_requests' do
       expect(page).to have_content("You have requests waiting:")
       expect(page).to have_content("2109-01-02")
+      expect(page).to have_content("Highfield House")
     end
   end
 
@@ -77,7 +78,6 @@ feature 'user can view requests' do
       expect(page).to have_content("2109-01-02")
     end
   end
-
 end
 
 feature 'user can accept and deny requests' do
