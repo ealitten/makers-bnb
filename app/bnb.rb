@@ -24,6 +24,8 @@ class Bnb < Sinatra::Base
     redirect '/users/new'
   end
 
+  # users routes
+
   get '/users/new' do
     erb :signup
   end
@@ -45,13 +47,10 @@ class Bnb < Sinatra::Base
     erb(:welcome)
   end
 
+  # spaces routes
+
   get '/spaces/new' do
     erb(:list_space)
-  end
-
-  post '/spaces/hire' do
-    Hire.create(date: params[:date], user_id: session[:user_id], space_id: params[:space_id])
-    redirect '/users'
   end
 
   post '/spaces' do
@@ -63,11 +62,42 @@ class Bnb < Sinatra::Base
                           user_id: current_user.id)
     redirect '/spaces'
   end
-
+ 
   get '/spaces' do
     @spaces = Space.all
     erb(:spaces)
   end
+
+  # requests routes
+
+  post '/spaces/hire' do #todo: rename to requests/new
+    Hire.create(date: params[:date], user_id: session[:user_id], space_id: params[:space_id])
+    redirect '/users'
+  end
+
+  get '/requests' do
+    @requests = current_user.spaces.map { |space| space.hires }.flatten
+    @new_requests = @requests.select{ |hire| hire.approved == nil }
+    @approved_requests = @requests.select{ |hire| hire.approved == true }
+    erb(:requests)
+  end
+
+  post '/requests' do
+    @hire_request = Hire.get(params[:request_id])
+
+    if params[:action] == 'approve'
+      @hire_request.update(approved: true)
+      flash.next[:notice] = "Request approved" 
+    end
+    if params[:action] == 'deny'
+      @hire_request.update(approved: false)
+      flash.next[:notice] = "Request denied"
+    end
+
+    redirect '/requests'
+  end
+
+  # sessions routes
 
   get '/sessions/new' do
     erb(:login)
@@ -82,7 +112,6 @@ class Bnb < Sinatra::Base
       session[:user_id] = @user.id
       redirect '/users'
     end
-
   end
 
   delete '/sessions' do

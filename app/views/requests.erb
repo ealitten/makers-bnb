@@ -1,0 +1,45 @@
+<h1>Requests</h1>
+
+<p>
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
+  <% end %>
+</p>
+
+<ul id="new_requests">
+    <% if !@new_requests.empty? %>
+    <h3>You have requests waiting:</h3>
+  <%end%>
+
+  <% @new_requests.each do |request| %>
+    <li>
+      User: <%= User.get(request.user_id).username %><br>
+      Date: <%= request.date %><br>
+      Property: <%= Space.get(request.space_id).title %><br>
+      <form action="/requests" method="post">
+        <input type="hidden" name="request_id" value="<%= request.id %>">
+        <input type="hidden" name="action" value="approve">
+        <input type="submit" value="Approve">
+      </form>
+      <form action="/requests" method="post">
+        <input type="hidden" name="request_id" value="<%= request.id %>">
+        <input type="hidden" name="action" value="deny">
+        <input type="submit" value="Deny">
+      </form>
+    </li>
+  <% end %>
+</ul>
+
+<ul id="approved_requests">
+    <% if !@approved_requests.empty? %>
+    <h3>Approved requests:</h3>
+  <%end%>
+
+  <% @approved_requests.each do |request| %>
+    <li>
+      User: <%= User.get(request.user_id).username %><br>
+      Date: <%= request.date %><br>
+      Property: <%= Space.get(request.space_id).title %><br>
+    </li>
+  <% end %>
+</ul>

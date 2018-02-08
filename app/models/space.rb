@@ -10,5 +10,6 @@ class Space
   property :availability_end, Date
 
   belongs_to :user
+  has n, :hires
 
 end
