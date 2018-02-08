@@ -13,7 +13,7 @@
 <ul id="requests">
   <% @requests.each do |request| %>
     <li>
-      User: <%= request.user_id %><br>
+      User: <%= User.get(request.user_id).username %><br>
       Date: <%= request.date %><br>
       <form action="/requests" method="post">
         <input type="hidden" name="request_id" value="<%= request.id %>">
