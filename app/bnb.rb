@@ -50,8 +50,13 @@ class Bnb < Sinatra::Base
   end
 
   post '/spaces/hire' do
-    Hire.create(date: params[:date], user_id: session[:user_id], space_id: params[:space_id])
-    redirect '/users'
+    if(Hire.first(space_id: params[:space_id]))
+      flash[:alert] = 'Booked by another user'
+      redirect '/spaces'
+    else
+      Hire.create(date: params[:date], user_id: session[:user_id], space_id: params[:space_id])
+      redirect '/users'
+    end
   end
 
   post '/spaces' do
