@@ -15,6 +15,8 @@ feature 'list space' do
     expect{ list_space }.to change { Space.count }.by 1
     expect(Space.all.map(&:title)).to include("Highfield House")
     expect(page).to have_content("Highfield House")
+    expect(page).to have_content("Available from: 2018-01-01")
+    expect(page).to have_content("Available to: 2018-12-01")
   end
 
 end

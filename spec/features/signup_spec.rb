@@ -5,6 +5,10 @@
 feature 'First-time user can register' do
   scenario 'user enters details and sees welcome message' do
     sign_up
+    expect(current_path).to eq '/users'
+    expect(page).to have_button('Spaces')
+    expect(page).to have_button('List Space')
+    expect(page).to have_button('Requests')
     expect(page).to have_content('Welcome Alex')
   end
 

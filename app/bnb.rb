@@ -42,7 +42,7 @@ class Bnb < Sinatra::Base
   end
 
   get '/users' do
-    "Welcome " + current_user.username
+    erb(:welcome)
   end
 
   get '/spaces/new' do
@@ -58,6 +58,8 @@ class Bnb < Sinatra::Base
     @space = Space.create(title: params[:title],
                           description: params[:description],
                           price: params[:price],
+                          availability_start: params[:availability_start],
+                          availability_end: params[:availability_end],
                           user_id: current_user.id)
     redirect '/spaces'
   end
@@ -72,19 +74,20 @@ class Bnb < Sinatra::Base
   end
 
   post '/sessions' do
-    @user = User.first(params[:name])
+    @user = User.first(username: params[:name])
     if @user.nil? || @user.password != params[:password]
       flash.now[:error] = 'Username or password is incorrect'
       erb(:login)
     else
       session[:user_id] = @user.id
-      redirect '/spaces'
+      redirect '/users'
     end
+
   end
 
   delete '/sessions' do
     session[:user_id] = nil
-    redirect '/spaces'
+    redirect '/users'
   end
 
 end
