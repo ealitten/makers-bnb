@@ -77,6 +77,8 @@ class Bnb < Sinatra::Base
 
   get '/requests' do
     @requests = current_user.spaces.map { |space| space.hires }.flatten
+    @new_requests = @requests.select{ |hire| hire.approved == nil }
+    @approved_requests = @requests.select{ |hire| hire.approved == true }
     erb(:requests)
   end
 
