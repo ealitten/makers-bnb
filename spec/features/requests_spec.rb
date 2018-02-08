@@ -13,4 +13,18 @@ feature 'user can view requests' do
     expect(page).to have_content("You have requests waiting:")
     expect(page).to have_content("2109-01-02")
   end
+
+  scenario 'user has no requests if no listings' do
+    sign_up(name: 'Owner', email: 'user1@example.com')
+    visit '/requests'
+    expect(page).not_to have_content("You have requests waiting:")
+  end
+
+  scenario 'user has no requests if none made' do
+    sign_up(name: 'Owner', email: 'user1@example.com')
+    list_space
+    visit '/requests'
+    expect(page).not_to have_content("You have requests waiting:")
+    expect(page).not_to have_content("2109-01-02")
+  end
 end
