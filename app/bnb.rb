@@ -81,8 +81,17 @@ class Bnb < Sinatra::Base
   end
 
   post '/requests' do
-    flash.next[:notice] = "Request approved" if params[:action] == 'approve'
-    flash.next[:notice] = "Request denied" if params[:action] == 'deny'
+    @hire_request = Hire.get(params[:request_id])
+
+    if params[:action] == 'approve'
+      @hire_request.update(approved: true)
+      flash.next[:notice] = "Request approved" 
+    end
+    if params[:action] == 'deny'
+      @hire_request.update(approved: false)
+      flash.next[:notice] = "Request denied"
+    end
+
     redirect '/requests'
   end
 
