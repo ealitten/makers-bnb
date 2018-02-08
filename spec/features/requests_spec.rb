@@ -43,6 +43,7 @@ feature 'user can accept and deny requests' do
     visit '/requests'
     click_button 'Approve'
     expect(page).to have_content("Request approved")
+    expect(Hire.first.approved).to eq(true) 
   end
 
   scenario 'user denies a request' do
@@ -58,5 +59,6 @@ feature 'user can accept and deny requests' do
     visit '/requests'
     click_button 'Deny'
     expect(page).to have_content("Request denied")
+    expect(Hire.first.approved).to eq(false) 
   end
 end
