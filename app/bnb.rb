@@ -42,7 +42,7 @@ class Bnb < Sinatra::Base
   end
 
   get '/users' do
-    "Welcome " + current_user.username
+    erb(:welcome)
   end
 
   get '/spaces/new' do
@@ -78,13 +78,13 @@ class Bnb < Sinatra::Base
       erb(:login)
     else
       session[:user_id] = @user.id
-      redirect '/spaces'
+      redirect '/users'
     end
   end
 
   delete '/sessions' do
     session[:user_id] = nil
-    redirect '/spaces'
+    redirect '/users'
   end
 
 end
