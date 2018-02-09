@@ -1,14 +1,29 @@
 <!DOCTYPE html>
   <html>
     <head>
+      <center>
       <title>MakersBnB</title>
+      <link rel='stylesheet' type='text/css' href='../css/layout.css'>
     </head>
     <body>
+      <header>
+        <h2>StrengthBnB</h2>
+
+      </header>
       <main>
         <%= partial :welcome %>
         <%= partial :flash %>
         <%= yield %>
       </main>
       <footer></footer>
+      <script
+   src="https://code.jquery.com/jquery-3.2.1.min.js"
+   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+   crossorigin="anonymous"></script>
+
+
+     <script src="./layout.js"></script>
+
+   </center>
     </body>
   </html>
