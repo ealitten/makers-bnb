@@ -15,7 +15,7 @@ class User
 
 
   has n, :spaces
-  has n, :hires
+  has n, :requests
 
   def password
     @password ||= Password.new(encrypted_password)
