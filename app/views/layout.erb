@@ -4,28 +4,9 @@
       <title>MakersBnB</title>
     </head>
     <body>
-      <header>
-        <% if not defined? @signin_page %>
-          <% if current_user %>
-            <h2>Welcome <%= @current_user.username %></h2>
-            <form action="/sessions" method="post">
-              <input type="hidden" name="_method" value="DELETE">
-              <input type="submit" value="Sign out">
-            </form>
-          <% else %>
-          <form action="/sessions/new">
-            <input type="submit" value="Sign in">
-          </form>
-          <% end %>
-        <% end %>
-      </header>
       <main>
-        <% flash.keys.each do |type| %>
-          <div data-alert class="flash <%= type %> alert-box radius">
-            <%= flash[type] %>
-            <!-- <a href="#" class="close">&times;</a> -->
-          </div>
-        <% end %>
+        <%= partial :welcome %>
+        <%= partial :flash %>
         <%= yield %>
       </main>
       <footer></footer>
