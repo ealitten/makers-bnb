@@ -4,6 +4,7 @@ require 'sinatra/base'
 require 'sinatra/flash'
 require 'sinatra/partial'
 require 'securerandom'
+require 'date'
 
 require_relative 'datamapper_setup'
 require_relative 'helpers'

@@ -5,14 +5,14 @@ feature 'user can view requests to hire their space' do
     click_button("Sign out")
     sign_up(name: 'Holidaymaker', email: 'user2@example.com')
     visit '/spaces'
-    fill_in :date, with: '02/01/2109'
+    fill_in :date, with: '17/07/2018'
     click_button 'Request'
     click_button("Sign out")
     signin(name: "Owner")
     visit '/requests'
     within 'ul#new_requests' do
       expect(page).to have_content("You have requests waiting:")
-      expect(page).to have_content("2109-01-02")
+      expect(page).to have_content("2018-07-17")
       expect(page).to have_content("Highfield House")
     end
   end
@@ -28,7 +28,7 @@ feature 'user can view requests to hire their space' do
     list_space
     visit '/requests'
     expect(page).not_to have_content("You have requests waiting:")
-    expect(page).not_to have_content("2109-01-02")
+    expect(page).not_to have_content("2018-07-17")
   end
 
   scenario 'user can only view requests for their own spaces' do
@@ -37,7 +37,7 @@ feature 'user can view requests to hire their space' do
     click_button("Sign out")
     sign_up(name: 'Holidaymaker', email: 'user2@example.com')
     visit '/spaces'
-    fill_in :date, with: '02/01/2109'
+    fill_in :date, with: '17/07/2018'
     click_button 'Request'
     click_button("Sign out")
     sign_up(name: 'Random 3rd party', email: 'user3@example.com')
@@ -51,14 +51,14 @@ feature 'user can view requests to hire their space' do
     click_button("Sign out")
     sign_up(name: 'Holidaymaker', email: 'user2@example.com')
     visit '/spaces'
-    fill_in :date, with: '02/01/2109'
+    fill_in :date, with: '17/07/2018'
     click_button 'Request'
     click_button("Sign out")
     signin(name: "Owner")
     visit '/requests'
     click_button 'Deny'
     expect(page).not_to have_content("You have requests waiting:")
-    expect(page).not_to have_content("2109-01-02")
+    expect(page).not_to have_content("2018-07-17")
   end
 
   scenario 'approved requests are still shown on the requests page' do
@@ -67,7 +67,7 @@ feature 'user can view requests to hire their space' do
     click_button("Sign out")
     sign_up(name: 'Holidaymaker', email: 'user2@example.com')
     visit '/spaces'
-    fill_in :date, with: '02/01/2109'
+    fill_in :date, with: '17/07/2018'
     click_button 'Request'
     click_button("Sign out")
     signin(name: "Owner")
@@ -75,7 +75,7 @@ feature 'user can view requests to hire their space' do
     click_button 'Approve'
     within 'ul#approved_requests' do
       expect(page).to have_content("Approved requests:")
-      expect(page).to have_content("2109-01-02")
+      expect(page).to have_content("2018-07-17")
     end
   end
 end
@@ -87,7 +87,7 @@ feature 'user can accept and deny requests' do
     click_button("Sign out")
     sign_up(name: 'Holidaymaker', email: 'user2@example.com')
     visit '/spaces'
-    fill_in :date, with: '02/01/2109'
+    fill_in :date, with: '17/07/2018'
     click_button 'Request'
     click_button("Sign out")
     signin(name: "Owner")
@@ -103,7 +103,7 @@ feature 'user can accept and deny requests' do
     click_button("Sign out")
     sign_up(name: 'Holidaymaker', email: 'user2@example.com')
     visit '/spaces'
-    fill_in :date, with: '02/01/2109'
+    fill_in :date, with: '17/07/2018'
     click_button 'Request'
     click_button("Sign out")
     signin(name: "Owner")
@@ -122,12 +122,12 @@ feature 'user can see their requests to hire someone elses space' do
     click_button("Sign out")
     sign_up(name: 'Holidaymaker', email: 'user2@example.com')
     visit '/spaces'
-    fill_in :date, with: '02/01/2109'
+    fill_in :date, with: '17/07/2018'
     click_button 'Request'
     visit '/requests'
     within 'ul#my_requests' do
       expect(page).to have_content("My requests to hire a space:")
-      expect(page).to have_content("2109-01-02")
+      expect(page).to have_content("2018-07-17")
       expect(page).to have_content("Highfield House")
     end
   end

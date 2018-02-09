@@ -5,9 +5,23 @@ class Bnb < Sinatra::Base
   end
 
   post '/requests' do
-    if Request.first(space_id: params[:space_id], date: params[:date], approved: true)
+
+    def already_booked?
+      Request.first(space_id: params[:space_id], date: params[:date], approved: true)
+    end
+
+    def unavailable?
+      requested_date =  Date.parse(params[:date])
+      available_from =  Space.get(params[:space_id]).availability_start
+      available_to =  Space.get(params[:space_id]).availability_end
+      !requested_date.between?(available_from, available_to)
+    end
+
+    if already_booked?
       flash[:alert] = "Booked by another user"
-    else
+    elsif unavailable?
+      flash[:alert] = "The space isn't available on that date"
+    else 
       Request.create(date: params[:date], user_id: session[:user_id], space_id: params[:space_id])
     end
     redirect '/requests'
@@ -36,3 +50,5 @@ class Bnb < Sinatra::Base
   end
 
 end
+
+
