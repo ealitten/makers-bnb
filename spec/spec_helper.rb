@@ -21,11 +21,11 @@ fill_in 'password_confirmation', with: password_confirmation
 click_button 'Sign up!'
 end
 
-def login(name: 'Alex', password: 'password123')
+def signin(name: 'Alex', password: 'password123')
   visit '/sessions/new'
   fill_in 'name', with: name
   fill_in 'password', with: password
-  click_button 'Log in'
+  click_button 'Sign in'
 end
 
 def list_space

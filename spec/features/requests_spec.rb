@@ -8,7 +8,7 @@ feature 'user can view requests to hire their space' do
     fill_in :date, with: '02/01/2109'
     click_button 'Request'
     click_button("Sign out")
-    login(name: "Owner")
+    signin(name: "Owner")
     visit '/requests'
     within 'ul#new_requests' do
       expect(page).to have_content("You have requests waiting:")
@@ -54,7 +54,7 @@ feature 'user can view requests to hire their space' do
     fill_in :date, with: '02/01/2109'
     click_button 'Request'
     click_button("Sign out")
-    login(name: "Owner")
+    signin(name: "Owner")
     visit '/requests'
     click_button 'Deny'
     expect(page).not_to have_content("You have requests waiting:")
@@ -70,7 +70,7 @@ feature 'user can view requests to hire their space' do
     fill_in :date, with: '02/01/2109'
     click_button 'Request'
     click_button("Sign out")
-    login(name: "Owner")
+    signin(name: "Owner")
     visit '/requests'
     click_button 'Approve'
     within 'ul#approved_requests' do
@@ -90,7 +90,7 @@ feature 'user can accept and deny requests' do
     fill_in :date, with: '02/01/2109'
     click_button 'Request'
     click_button("Sign out")
-    login(name: "Owner")
+    signin(name: "Owner")
     visit '/requests'
     click_button 'Approve'
     expect(page).to have_content("Request approved")
@@ -106,7 +106,7 @@ feature 'user can accept and deny requests' do
     fill_in :date, with: '02/01/2109'
     click_button 'Request'
     click_button("Sign out")
-    login(name: "Owner")
+    signin(name: "Owner")
     visit '/requests'
     click_button 'Deny'
     expect(page).to have_content("Request denied")

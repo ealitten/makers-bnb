@@ -1,18 +1,18 @@
 feature 'User sign in' do
   scenario 'with correct username & pw' do
     sign_up
-    login
+    signin
     expect(page).to have_content('Welcome Alex')
   end
 
   scenario 'with wrong pw' do
     sign_up
-    login(password: 'wrongpassword')
+    signin(password: 'wrongpassword')
     expect(page).to have_content('Username or password is incorrect')
   end
 
   scenario 'when user does not exist' do
-    login
+    signin
     expect(page).to have_content('Username or password is incorrect')
   end
 
@@ -21,7 +21,7 @@ feature 'User sign in' do
     click_button("Sign out")
     sign_up(name: 'User2', email: 'user2@example.com')
     click_button("Sign out")
-    login(name: 'User2')
+    signin(name: 'User2')
     expect(page).to have_content('Welcome User2')
   end
 
