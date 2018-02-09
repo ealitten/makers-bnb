@@ -73,24 +73,24 @@ class Bnb < Sinatra::Base
   end
 
   post '/requests' do
-    if(Hire.first(space_id: params[:space_id]))
+    if(Request.first(space_id: params[:space_id]))
       flash[:alert] = "Booked by another user"
       redirect '/spaces'
     else
-      Hire.create(date: params[:date], user_id: session[:user_id], space_id: params[:space_id])
+      Request.create(date: params[:date], user_id: session[:user_id], space_id: params[:space_id])
       redirect '/users'
     end
   end
 
   get '/requests' do
-    @requests = current_user.spaces.map { |space| space.hires }.flatten
-    @new_requests = @requests.select{ |hire| hire.approved == nil }
-    @approved_requests = @requests.select{ |hire| hire.approved == true }
+    @requests = current_user.spaces.map { |space| space.requests }.flatten
+    @new_requests = @requests.select{ |request| request.approved == nil }
+    @approved_requests = @requests.select{ |request| request.approved == true }
     erb(:requests)
   end
 
   patch '/requests' do
-    @hire_request = Hire.get(params[:request_id])
+    @hire_request = Request.get(params[:request_id])
 
     if params[:action] == 'approve'
       @hire_request.update(approved: true)

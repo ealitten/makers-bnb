@@ -6,7 +6,7 @@ feature 'user can view requests' do
     sign_up(name: 'Holidaymaker', email: 'user2@example.com')
     visit '/spaces'
     fill_in :date, with: '02/01/2109'
-    click_button 'Hire'
+    click_button 'Request'
     click_button("Sign out")
     login(name: "Owner")
     visit '/requests'
@@ -38,7 +38,7 @@ feature 'user can view requests' do
     sign_up(name: 'Holidaymaker', email: 'user2@example.com')
     visit '/spaces'
     fill_in :date, with: '02/01/2109'
-    click_button 'Hire'
+    click_button 'Request'
     click_button("Sign out")
     sign_up(name: 'Random 3rd party', email: 'user3@example.com')
     visit '/requests'
@@ -52,7 +52,7 @@ feature 'user can view requests' do
     sign_up(name: 'Holidaymaker', email: 'user2@example.com')
     visit '/spaces'
     fill_in :date, with: '02/01/2109'
-    click_button 'Hire'
+    click_button 'Request'
     click_button("Sign out")
     login(name: "Owner")
     visit '/requests'
@@ -68,7 +68,7 @@ feature 'user can view requests' do
     sign_up(name: 'Holidaymaker', email: 'user2@example.com')
     visit '/spaces'
     fill_in :date, with: '02/01/2109'
-    click_button 'Hire'
+    click_button 'Request'
     click_button("Sign out")
     login(name: "Owner")
     visit '/requests'
@@ -88,13 +88,13 @@ feature 'user can accept and deny requests' do
     sign_up(name: 'Holidaymaker', email: 'user2@example.com')
     visit '/spaces'
     fill_in :date, with: '02/01/2109'
-    click_button 'Hire'
+    click_button 'Request'
     click_button("Sign out")
     login(name: "Owner")
     visit '/requests'
     click_button 'Approve'
     expect(page).to have_content("Request approved")
-    expect(Hire.first.approved).to eq(true) 
+    expect(Request.first.approved).to eq(true) 
   end
 
   scenario 'user denies a request' do
@@ -104,13 +104,13 @@ feature 'user can accept and deny requests' do
     sign_up(name: 'Holidaymaker', email: 'user2@example.com')
     visit '/spaces'
     fill_in :date, with: '02/01/2109'
-    click_button 'Hire'
+    click_button 'Request'
     click_button("Sign out")
     login(name: "Owner")
     visit '/requests'
     click_button 'Deny'
     expect(page).to have_content("Request denied")
-    expect(Hire.first.approved).to eq(false) 
+    expect(Request.first.approved).to eq(false) 
   end
 
 end
