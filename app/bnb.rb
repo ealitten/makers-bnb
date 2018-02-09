@@ -60,7 +60,7 @@ class Bnb < Sinatra::Base
                           user_id: current_user.id)
     redirect '/spaces'
   end
- 
+
   get '/spaces' do
     @spaces = Space.all
     erb(:spaces)
@@ -73,13 +73,12 @@ class Bnb < Sinatra::Base
   end
 
   post '/requests' do
-    if(Request.first(space_id: params[:space_id]))
+    if Request.first(space_id: params[:space_id], date: params[:date], approved: true)
       flash[:alert] = "Booked by another user"
-      redirect '/spaces'
     else
       Request.create(date: params[:date], user_id: session[:user_id], space_id: params[:space_id])
-      redirect '/users'
     end
+    redirect '/requests'
   end
 
   get '/requests' do
@@ -95,7 +94,7 @@ class Bnb < Sinatra::Base
 
     if params[:action] == 'approve'
       @hire_request.update(approved: true)
-      flash.next[:notice] = "Request approved" 
+      flash.next[:notice] = "Request approved"
     end
     if params[:action] == 'deny'
       @hire_request.update(approved: false)
