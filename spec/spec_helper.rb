@@ -38,6 +38,13 @@ def list_space
   click_button 'List space!'
 end
 
+def request(date: '17/07/2018')
+  visit '/spaces'
+  fill_in :date, with: date
+  click_button 'Request'
+end
+
+
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
