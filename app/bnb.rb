@@ -73,33 +73,12 @@ class Bnb < Sinatra::Base
   end
 
   post '/requests' do
-
-    if(Request.first(space_id: params[:space_id]))
-      test = Request.all.select{ |request| p request.space_id == params[:space_id].to_i}.any?{ |space|
-        p "space date:"
-        p space.date.xmlschema
-        p "params:date"
-        p params[:date]
-        p "same?"
-        p space.date.xmlschema == params[:date]
-      }
-
-      p "TEST:"
-      p test
-
-      if test
-        flash[:warning] == "Already booked"
-      else
-        Request.create(date: params[:date], user_id: session[:user_id], space_id: params[:space_id])
-        flash.next[:notice] = "Request approved"
-      end
+    if Request.first(space_id: params[:space_id], date: params[:date], approved: true)
+      flash[:alert] = "Booked by another user"
     else
       Request.create(date: params[:date], user_id: session[:user_id], space_id: params[:space_id])
-      redirect '/spaces'
     end
-
-
-
+    redirect '/requests'
   end
 
   get '/requests' do
