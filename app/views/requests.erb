@@ -55,7 +55,9 @@
   <li>
     Date: <%= request.date %><br>
     Space: <%= Space.get(request.space_id).title %><br>
-    Approved: <%= request.approved %>
+    <%= "Approved" if request.approved == true %>
+    <%= "Not approved" if request.approved == false %>
+    <%= "Pending" if request.approved.nil? %>
   </li>
 <% end %>
 </ul>
