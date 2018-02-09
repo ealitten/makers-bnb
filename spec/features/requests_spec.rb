@@ -1,4 +1,4 @@
-feature 'user can view requests' do
+feature 'user can view requests to hire their space' do
   scenario 'user can view requests' do
     sign_up(name: 'Owner', email: 'user1@example.com')
     list_space
@@ -113,4 +113,22 @@ feature 'user can accept and deny requests' do
     expect(Request.first.approved).to eq(false) 
   end
 
+end
+
+feature 'user can see their requests to hire someone elses space' do
+  scenario 'user can view requests' do
+    sign_up(name: 'Owner', email: 'user1@example.com')
+    list_space
+    click_button("Sign out")
+    sign_up(name: 'Holidaymaker', email: 'user2@example.com')
+    visit '/spaces'
+    fill_in :date, with: '02/01/2109'
+    click_button 'Request'
+    visit '/requests'
+    within 'ul#my_requests' do
+      expect(page).to have_content("My requests to hire a space:")
+      expect(page).to have_content("2109-01-02")
+      expect(page).to have_content("Highfield House")
+    end
+  end
 end
