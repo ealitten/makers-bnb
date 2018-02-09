@@ -17,11 +17,13 @@
       Date: <%= request.date %><br>
       Property: <%= Space.get(request.space_id).title %><br>
       <form action="/requests" method="post">
+        <input type="hidden" name="_method" value="patch">
         <input type="hidden" name="request_id" value="<%= request.id %>">
         <input type="hidden" name="action" value="approve">
         <input type="submit" value="Approve">
       </form>
       <form action="/requests" method="post">
+        <input type="hidden" name="_method" value="patch">
         <input type="hidden" name="request_id" value="<%= request.id %>">
         <input type="hidden" name="action" value="deny">
         <input type="submit" value="Deny">

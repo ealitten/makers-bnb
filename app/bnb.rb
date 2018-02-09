@@ -8,10 +8,8 @@ require_relative 'helpers'
 
 class Bnb < Sinatra::Base
 
-  # helper methods
   helpers Helpers
 
-  # server config
   enable :sessions
   set :session_secret, ENV.fetch('SESSION_SECRET') { SecureRandom.hex(64) }
   register Sinatra::Flash
@@ -70,7 +68,11 @@ class Bnb < Sinatra::Base
 
   # requests routes
 
-  post '/spaces/hire' do # rename to /requests/new
+  get 'requests/new' do
+    # placeholder for page to create hire request (currently created straight from /spaces)
+  end
+
+  post '/requests' do
     if(Hire.first(space_id: params[:space_id]))
       flash[:alert] = "Booked by another user"
       redirect '/spaces'
@@ -87,7 +89,7 @@ class Bnb < Sinatra::Base
     erb(:requests)
   end
 
-  post '/requests' do
+  patch '/requests' do
     @hire_request = Hire.get(params[:request_id])
 
     if params[:action] == 'approve'
@@ -98,7 +100,6 @@ class Bnb < Sinatra::Base
       @hire_request.update(approved: false)
       flash.next[:notice] = "Request denied"
     end
-
     redirect '/requests'
   end
 

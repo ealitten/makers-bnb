@@ -8,7 +8,7 @@
       Price per night: <%= space.price %><br>
       Available from: <%= space.availability_start %><br>
       Available to: <%= space.availability_end %><br>
-      <form action="/spaces/hire" method="post">
+      <form action="/requests" method="post">
         <input type="hidden" name="space_id" value="<%= space.id %>">
         <label for="date" > Date:
           <input type="date" name="date">
