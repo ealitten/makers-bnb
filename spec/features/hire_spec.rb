@@ -18,14 +18,13 @@ feature 'Request' do
     fill_in 'Date', with: '02/01/2109'
     expect{click_button 'Request'}.to change { Request.count}.by 1
     click_button 'Sign out'
-    login(name: 'owner', password: 'password123')
+    signin(name: 'owner', password: 'password123')
     click_button 'Requests'
     click_button 'Approve'
     click_button 'Sign out'
     sign_up(name: 'requester2', email: 'requester2@example.com')
     visit('/spaces')
     fill_in 'Date', with: '02/01/2109'
-    click_button 'Request'
     expect{click_button 'Request'}.to change { Request.count}.by 0
   end
 end
