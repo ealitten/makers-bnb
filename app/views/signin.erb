@@ -2,16 +2,16 @@
 <html>
 <head>
 
-  <title>Login</title>
+  <title>Sign in</title>
 
 </head>
 <body>
-  <h3>Please login to MakersBnB</h3>
+  <h3>Please sign in to MakersBnB</h3>
 
   <p>
-      <% if flash[:error] %>
-        <%= flash[:error] %>
-      <% end %>
+    <% if flash[:error] %>
+      <%= flash[:error] %>
+    <% end %>
   </p>
   <form action="/sessions" method="post">
     <label for="name">Username:
@@ -20,7 +20,7 @@
     <label for="password">Password:
       <input type="password" name="password" />
     </label>
-    <input type="submit" value="Log in" />
+    <input type="submit" value="Sign in" />
   </form>
 </body>
 </html>
