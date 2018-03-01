@@ -24,6 +24,7 @@ class Bnb < Sinatra::Base
   end
 
   get '/users' do
+    @signin_page = true
     erb(:welcome)
   end
 

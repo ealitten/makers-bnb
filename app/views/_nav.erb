@@ -1,6 +1,14 @@
 <% if not defined? @signin_page %>
   <% if current_user %>
-    <h2>Welcome <%= @current_user.username %></h2>
+    <form action="/spaces">
+      <input type="submit" value="Spaces" />
+    </form>
+    <form action="/spaces/new">
+      <input type="submit" value="List Space" />
+    </form>
+    <form action="/requests">
+      <input type="submit" value="Requests" />
+    </form>
     <form action="/sessions" method="post">
       <input type="hidden" name="_method" value="DELETE">
       <input type="submit" value="Sign out">
