@@ -1,7 +1,7 @@
 MakersBnB challenge
 ==================
 
-Makker's Academy group project to create a clone of a popular website which lets you list and book spaces to stay in.
+Maker's Academy group project to create a clone of a popular website which lets you list and book spaces to stay in.
 
 
 Technologies used
