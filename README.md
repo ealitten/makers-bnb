@@ -86,8 +86,9 @@ I would like to request to hire a space for one night
 - Until a user has confirmed a booking request, that space can still be booked for that night.
 
 
-## Todo
+## Todo / possible extensions
 
 - Styling and layout
 - Better navigation (create nav bar with links to different pages)
+- Interstitial request page, where user can add text to their request, rather than requesting straight from /spaces
 - Allow users to add an image of their space
